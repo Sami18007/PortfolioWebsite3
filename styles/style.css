@@ -1,0 +1,295 @@
+html {
+    scroll-behavior: smooth;
+    transition-duration: 0.5s;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2.2vh;
+    color: white;
+}
+
+#pageHeader {
+    display: block;
+    width: 100%;
+    min-height: 60vh;
+    /* margin-bottom: 50vh; */
+    /* background-color: blueviolet; */
+    background: linear-gradient(to bottom, blueviolet, rgba(255, 255, 255, 0));
+    z-index: 0;
+}
+
+/* #pageHeader::after {
+    content: "";
+    display: block;
+    width: 100%;
+    min-height: 10vh;
+    background: linear-gradient(to bottom, blueviolet rgba(255, 255, 255, 0));
+    transform: translateY(-700%);
+} */
+
+#navBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0 5vw;
+    /* background: linear-gradient(to bottom, blueviolet, rgba(137, 43, 226, 1)); */
+    z-index: 1000;
+}
+
+#navBar a {
+    color: white;
+    margin: 0 0 0 1.25vw;
+}
+
+#navBar a:hover {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#headerBg {
+    height: 60vh;
+    transform: skewY(-4deg);
+    transform-origin: top right;
+    box-sizing: border-box;
+    border-top: 2vh solid rgba(0, 0, 0, 0.5);
+}
+
+.bgLayer {
+    display: block;
+    width: 100%;
+    min-height: 60vh;
+}
+
+.bgLayer1 {
+    background: repeating-linear-gradient(to right, rgba(255, 255, 255, 0.8) 10vw, blueviolet 20vw);
+    position: relative;
+}
+
+.bgLayer2 {
+    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 10vw, rgba(137, 43, 226, 0.4) 20vw);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#headerBg::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 60vh;
+    background: linear-gradient(to top, white, rgba(255, 255, 255, 0));
+    transform: translateY(3%);
+}
+
+#headerContent {
+    margin: 0;
+    /* padding: 2.5vh; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background: linear-gradient(173deg, rgba(128, 128, 128, 0.9), rgba(82, 82, 82, 0.9), rgba(172, 172, 172, 0.9)); */
+    border-radius: 8px;
+    color: rgba(40, 40, 40, 0.8);
+}
+
+#headerContent h1 {
+    margin: 0;
+    font-size: 10rem;
+}
+
+#headerArrowDown {
+    position: absolute;
+    bottom: 10vh;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    color: rgba(40, 40, 40, 0.7);
+    /* width: 100%;
+    text-align: center; */
+}
+
+#projectSection {
+    width: 100%;
+    position: relative;
+    top: 30vh;
+    left: 0;
+    /* transform: translate(-50%, 0%); */
+    z-index: 1;
+}
+
+#projectTable {
+    width: 91.25%;
+    margin: auto;
+    /* display: flex;
+    flex-direction: row; */
+}
+
+.tableItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0.625vw;
+    box-sizing: border-box;
+    padding: 0 1.25vw;
+    border-radius: 8px;
+    /* background: linear-gradient(173deg, rgba(40, 40, 40, 0.9), rgba(128, 128, 128, 0.9)); */
+    background-color: rgba(40, 40, 40, 0.9);
+}
+
+.tableItem:first-child {
+    /* margin-left: 0; */
+    background: linear-gradient(173deg, rgba(128, 128, 128, 0.9), rgba(40, 40, 40, 0.9));
+}
+
+.tableItem:last-child {
+    /* margin-right: 0; */
+    background: linear-gradient(173deg, rgba(40, 40, 40, 0.9), rgba(128, 128, 128, 0.9));
+}
+
+.itemTitle {
+    text-align: center;
+}
+
+.itemImage {
+    display: block;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    border: 0.25vw solid rgba(40, 40, 40, 0.8);
+    border-radius: 8px;
+}
+
+.itemText {
+    text-align: center;
+}
+
+.buttons {
+    width: 100%;
+    margin: 1.25vw 0 2.5vh 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button {
+    width: 25%;
+    min-height: 5vh;
+    margin: 0 0.625vw;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(rgb(255, 255, 255), rgb(172, 172, 172));
+    font-size: 1.9vh;
+    color: rgb(40, 40, 40); 
+}
+
+button:first-child {
+    margin-left: 0;
+}
+
+button:last-child {
+    margin-right: 0;
+}
+
+button:hover {
+    background: linear-gradient(rgb(225, 225, 225), rgb(128, 128, 128));
+}
+
+#pageFooter {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: 30vh;
+    /* margin-top: 50vh; */
+    background: linear-gradient(to top, blueviolet, rgba(255, 255, 255, 0));
+    z-index: 0;
+}
+
+#footerArrowUp {
+    position: absolute;
+    bottom: 10vh;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    color: rgba(40, 40, 40, 0.8);
+}
+
+#footerBg {
+    display: block;
+    width: 100%;
+    min-height: 30vh;
+    box-sizing: border-box;
+    border-bottom: 2vh solid rgba(0, 0, 0, 0.5);
+    transform: skewY(-4deg);
+    transform-origin: bottom left;
+}
+
+#footerBg::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 60vh;
+    background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
+    transform: translateY(-3%);
+}
+
+#footerContent {
+    display: block;
+    width: 100%;
+    height: 10vh;
+}
+
+#footerBg .bgLayer1 {
+    background: repeating-linear-gradient(to left, rgba(255, 255, 255, 0.8) 10vw, blueviolet 20vw);
+}
+
+#footerBg .bgLayer2 {
+    background: repeating-linear-gradient(to top, rgba(255, 255, 255, 0.5) 10vw, rgba(137, 43, 226, 0.4) 20vw);
+}
+
+@media only screen and (min-width: 992px) {
+
+    #projectTable {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .tableItem {
+        width: 48.6%;
+        background: linear-gradient(173deg,  rgba(128, 128, 128, 0.9), rgba(40, 40, 40, 0.9));
+    }
+
+    .tableItem:first-child {
+        background: linear-gradient(173deg,  rgba(128, 128, 128, 0.9), rgba(40, 40, 40, 0.9));
+    }
+    
+    .tableItem:last-child {
+        background: linear-gradient(173deg,  rgba(128, 128, 128, 0.9), rgba(40, 40, 40, 0.9));
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .tableItem {
+        width: 31.94%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+
+    #headerContent h1 {
+        font-size: 7rem;
+    }
+}
