@@ -1,3 +1,8 @@
+:root {
+    --bg-color: blueviolet;
+    --text-color-dark: rgba(40, 40, 40, 0.8);
+}
+
 html {
     scroll-behavior: smooth;
     transition-duration: 0.5s;
@@ -16,7 +21,7 @@ body {
     min-height: 60vh;
     /* margin-bottom: 50vh; */
     /* background-color: blueviolet; */
-    background: linear-gradient(to bottom, blueviolet, rgba(255, 255, 255, 0));
+    background: linear-gradient(to bottom, var(--bg-color), rgba(255, 255, 255, 0));
     z-index: 0;
 }
 
@@ -67,7 +72,7 @@ body {
 }
 
 .bgLayer1 {
-    background: repeating-linear-gradient(to right, rgba(255, 255, 255, 0.8) 10vw, blueviolet 20vw);
+    background: repeating-linear-gradient(to right, rgba(255, 255, 255, 0.8) 10vw, var(--bg-color) 20vw);
     position: relative;
 }
 
@@ -99,7 +104,7 @@ body {
     transform: translate(-50%, -50%);
     /* background: linear-gradient(173deg, rgba(128, 128, 128, 0.9), rgba(82, 82, 82, 0.9), rgba(172, 172, 172, 0.9)); */
     border-radius: 8px;
-    color: rgba(40, 40, 40, 0.8);
+    color: var(--text-color-dark);
 }
 
 #headerContent h1 {
@@ -166,7 +171,7 @@ body {
     width: 100%;
     height: auto;
     box-sizing: border-box;
-    border: 0.25vw solid rgba(40, 40, 40, 0.8);
+    border: 0.25vw solid var(--text-color-dark);
     border-radius: 8px;
 }
 
@@ -220,7 +225,7 @@ button:hover {
     bottom: 5vh;
     left: 50%;
     transform: translate(-50%, 50%);
-    color: rgba(40, 40, 40, 0.8);
+    color: var(--text-color-dark);
 }
 
 #footerBg {
@@ -251,7 +256,7 @@ button:hover {
 }
 
 #footerBg .bgLayer1 {
-    background: repeating-linear-gradient(to left, rgba(255, 255, 255, 0.8) 10vw, blueviolet 20vw);
+    background: repeating-linear-gradient(to left, rgba(255, 255, 255, 0.8) 10vw, var(--bg-color) 20vw);
 }
 
 #footerBg .bgLayer2 {
