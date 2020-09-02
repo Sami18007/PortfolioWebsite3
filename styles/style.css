@@ -1,6 +1,9 @@
 :root {
     --bg-color: blueviolet;
-    --text-color-dark: rgba(40, 40, 40, 0.8);
+    --bg-color-light: rgb(172, 62, 247);
+    --bg-color-extra-light-transparent: rgba(205, 157, 238, 0.45);
+    --text-color-dark: rgb(46, 39, 53);
+    --text-color-dark-transparent: rgba(46, 39, 53, 0.72);
 }
 
 html {
@@ -18,7 +21,7 @@ body {
 #pageHeader {
     display: block;
     width: 100%;
-    min-height: 60vh;
+    min-height: 90vh;
     /* margin-bottom: 50vh; */
     /* background-color: blueviolet; */
     background: linear-gradient(to bottom, var(--bg-color), rgba(255, 255, 255, 0));
@@ -35,17 +38,38 @@ body {
 } */
 
 #navBar {
+    position: relative;
+    width: 100%;
+    height: 12vh;
+    margin: 0;
+    box-sizing: border-box;
+    /* background: linear-gradient(to bottom, blueviolet, rgba(137, 43, 226, 1)); */
+    z-index: 9;
+}
+
+#navBarBg {
+    display: block;
+    width: 100%;
+    height: 1000%;
+    /* transform: skewY(-20deg) translateY(-90%); */
+    transform-origin: top right;
+    background: linear-gradient(to bottom left, var(--bg-color), var(--bg-color-light));
+    border-bottom: 2vh solid var(--text-color-dark-transparent);
+    /* border-bottom: 2vh solid rgba(0, 0, 0, 0.5); */
+}
+
+#navBarContent {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    height: 10vh;
-    margin: 0;
     box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     padding: 0 5vw;
-    /* background: linear-gradient(to bottom, blueviolet, rgba(137, 43, 226, 1)); */
-    z-index: 1000;
 }
 
 #navBar a {
@@ -54,30 +78,33 @@ body {
 }
 
 #navBar a:hover {
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--text-color-dark);
+    /* color: rgba(0, 0, 0, 0.5); */
 }
 
 #headerBg {
-    height: 60vh;
-    transform: skewY(-4deg);
-    transform-origin: top right;
-    box-sizing: border-box;
-    border-top: 2vh solid rgba(0, 0, 0, 0.5);
+    display: block;
+    position: relative;
+    min-height: 78vh;
+    /* transform: skewY(-4deg); */
+    /* transform-origin: top right; */
+    /* box-sizing: border-box; */
+    /* border-top: 2vh solid rgba(0, 0, 0, 0.5); */
 }
 
 .bgLayer {
     display: block;
     width: 100%;
-    min-height: 60vh;
+    min-height: 78vh;
 }
 
 .bgLayer1 {
-    background: repeating-linear-gradient(to right, rgba(255, 255, 255, 0.8) 10vw, var(--bg-color) 20vw);
-    position: relative;
+    background: repeating-linear-gradient(to right, var(--bg-color-extra-light-transparent) 10vw, var(--bg-color) 20vw);
+    /* position: relative; */
 }
 
 .bgLayer2 {
-    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 10vw, rgba(137, 43, 226, 0.4) 20vw);
+    background: repeating-linear-gradient(to bottom, var(--bg-color-extra-light-transparent) 10vw, rgba(137, 43, 226, 0.4) 20vw);
     position: absolute;
     top: 0;
     left: 0;
@@ -90,21 +117,23 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 60vh;
+    min-height: 78vh;
     background: linear-gradient(to top, white, rgba(255, 255, 255, 0));
     transform: translateY(3%);
 }
 
 #headerContent {
     margin: 0;
+    padding: 0;
     /* padding: 2.5vh; */
     position: absolute;
-    top: 44.65%;
+    top: 47.3%;
     left: 50%;
     transform: translate(-50%, -50%);
     /* background: linear-gradient(173deg, rgba(128, 128, 128, 0.9), rgba(82, 82, 82, 0.9), rgba(172, 172, 172, 0.9)); */
     border-radius: 8px;
     color: var(--text-color-dark);
+    z-index: 10;
 }
 
 #headerContent h1 {
@@ -117,7 +146,8 @@ body {
     bottom: 5vh;
     left: 50%;
     transform: translate(-50%, 50%);
-    color: rgba(40, 40, 40, 0.7);
+    color: var(--text-color-dark-transparent);
+    /* color: rgba(40, 40, 40, 0.7); */
     /* width: 100%;
     text-align: center; */
 }
@@ -125,7 +155,7 @@ body {
 #projectSection {
     width: 100%;
     position: relative;
-    top: 30vh;
+    top: 14vh;
     left: 0;
     /* transform: translate(-50%, 0%); */
     z-index: 1;
@@ -214,9 +244,9 @@ button:hover {
     display: block;
     position: relative;
     width: 100%;
-    min-height: 30vh;
+    min-height: 90vh;
     /* margin-top: 50vh; */
-    background: linear-gradient(to top, blueviolet, rgba(255, 255, 255, 0));
+    background: linear-gradient(to top left, var(--bg-color), var(--bg-color-light));
     z-index: 0;
 }
 
@@ -230,11 +260,12 @@ button:hover {
 
 #footerBg {
     display: block;
+    position: relative;
     width: 100%;
-    min-height: 30vh;
+    min-height: 78vh;
     box-sizing: border-box;
-    border-bottom: 2vh solid rgba(0, 0, 0, 0.5);
-    transform: skewY(-4deg);
+    /* border-bottom: 2vh solid rgba(0, 0, 0, 0.5); */
+    /* transform: skewY(-4deg); */
     transform-origin: bottom left;
 }
 
@@ -244,7 +275,7 @@ button:hover {
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 60vh;
+    min-height: 78vh;
     background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
     transform: translateY(-3%);
 }
@@ -252,16 +283,18 @@ button:hover {
 #footerContent {
     display: block;
     width: 100%;
-    height: 10vh;
+    height: 12vh;
+    box-sizing: border-box;
+    border-top: 2vh solid var(--text-color-dark-transparent);
 }
 
-#footerBg .bgLayer1 {
-    background: repeating-linear-gradient(to left, rgba(255, 255, 255, 0.8) 10vw, var(--bg-color) 20vw);
+/* #footerBg .bgLayer1 {
+    background: repeating-linear-gradient(to right, var(--bg-color-extra-light-transparent) 10vw, var(--bg-color) 20vw);
 }
 
 #footerBg .bgLayer2 {
-    background: repeating-linear-gradient(to top, rgba(255, 255, 255, 0.5) 10vw, rgba(137, 43, 226, 0.4) 20vw);
-}
+    background: repeating-linear-gradient(to bottom, var(--bg-color-extra-light-transparent) 10vw, rgba(137, 43, 226, 0.4) 20vw);
+} */
 
 @media only screen and (min-width: 992px) {
 
@@ -291,13 +324,13 @@ button:hover {
         width: 31.94%;
     }
 
-    #headerBg {
+    /* #headerBg {
         transform: skewY(-3deg);
     }
 
     #footerBg {
         transform: skewY(-3deg);
-    }
+    } */
 }
 
 @media only screen and (min-width: 1600px) {
@@ -306,11 +339,11 @@ button:hover {
         font-size: 7rem;
     }
 
-    #headerBg {
+    /* #headerBg {
         transform: skewY(-2deg);
     }
 
     #footerBg {
         transform: skewY(-2deg);
-    }
+    } */
 }
