@@ -8,7 +8,10 @@
     <body>
         <header id="pageHeader">
             <div id="navBar">
-                <div id="navBarBg"></div>
+                <div id="navBarBg">
+                    <!-- <div class="defaultBg"></div>
+                    <div class="border"></div> -->
+                </div>
                 <div id=navBarContent>
                     <h3>Portfolio</h3>
                     <nav>
@@ -82,8 +85,24 @@
         const navBarBg = document.getElementById("navBarBg");
         let width = innerWidth;
         let height = innerHeight;
-        let deg = (Math.atan((height * 0.78) / width) * (180 / Math.PI));
-        navBarBg.style.transform = "skewY(" + -deg + "deg) translateY(-90%)";
-        console.log(-deg);
+        let rad = (Math.atan((height * 0.78) / width));
+        let deg = rad * (180 / Math.PI);
+        // navBarBg.style.transform = "skewY(" + (-deg) + "deg) translateY(-90%)";
+
+        let newDeg = 0;
+        let change = rad;
+        navBarBg.style.transform = "skewY(" + newDeg + "deg) translateY(-90%)";
+
+        const navBarAnimation = setInterval(() => {
+            // if (newDeg < 0 || newDeg > 90) {
+            //     change = -change;
+            // }
+            change = change * (0.983);
+            newDeg = newDeg + change;
+            navBarBg.style.transform = "skewY(" + (-newDeg) + "deg) translateY(-90%)";
+            if (newDeg >= deg) {
+                clearInterval(navBarAnimation);
+            }
+        }, 15);
     </script>
 </html>
