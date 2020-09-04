@@ -27,7 +27,7 @@
             <div id="headerContent">
                 <h1>Projects</h1>
             </div>
-            <a href="#projectSection"><i id="headerArrowDown" class="fas fa-arrow-down fa-2x"></i></a>
+            <a href="#pageFooter"><i id="headerArrowDown" class="fas fa-arrow-down fa-2x"></i></a>
         </header>
         <section id="projectSection">
             <div id="projectTable" class="sectionContent">
@@ -78,31 +78,90 @@
                 <div class="bgLayer bgLayer1"></div>
                 <div class="bgLayer bgLayer2"></div>
             </div>
-            <div id="footerContent"></div>
+            <div id="footerContent">
+                <h1>The End</h1>
+            </div>
+            <div id="footerBar">
+                <div id="footerBarBg"></div>
+                <div id="footerBarContent">
+                    <div>Sami Aartolahti</div>
+                    <div>September 4th 2020</div>
+                </div>
+            </div>
         </footer>
     </body>
     <script>
         const navBarBg = document.getElementById("navBarBg");
+        const pageFooter = document.getElementById("pageFooter");
+        const pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.15;
+        const footerBarBg = document.getElementById("footerBarBg");
+        let navBarHasAngle = false;
+        let footerHasAngle = false;
         let width = innerWidth;
         let height = innerHeight;
+
+        // Find out the right angle for the navBarBg and footerBarBg
         let rad = (Math.atan((height * 0.78) / width));
         let deg = rad * (180 / Math.PI);
-        // navBarBg.style.transform = "skewY(" + (-deg) + "deg) translateY(-90%)";
 
-        let newDeg = 0;
-        let change = rad;
-        navBarBg.style.transform = "skewY(" + newDeg + "deg) translateY(-90%)";
+        // Initialize the navBarBg
+        navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
+        navBarHasAngle = true;
+        skewNavBarAnimation();
 
-        const navBarAnimation = setInterval(() => {
-            // if (newDeg < 0 || newDeg > 90) {
-            //     change = -change;
-            // }
-            change = change * (0.983);
-            newDeg = newDeg + change;
-            navBarBg.style.transform = "skewY(" + (-newDeg) + "deg) translateY(-90%)";
-            if (newDeg >= deg) {
-                clearInterval(navBarAnimation);
+        // Start or stop playing animations depending on what on how much the page has been scrolled
+        onscroll = function() {
+            if (document.documentElement.scrollTop <= 0 && navBarHasAngle === false) {
+                navBarHasAngle = true;
+                skewNavBarAnimation();
+            } else if (document.documentElement.scrollTop > height && navBarHasAngle === true) {
+                navBarHasAngle = false;
+                navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
+            } else if (document.documentElement.scrollTop >= pageFooterOffset && footerHasAngle === false) {
+                footerHasAngle = true;
+                skewFooterBarAnimation();
+            } else if (document.documentElement.scrollTop < pageFooterOffset - height && footerHasAngle === true) {
+                footerHasAngle = false;
+                footerBarBg.style.transform = "skewY(" + 0 + "deg)";
             }
-        }, 15);
+        }
+
+        // Function which starts and stops the skew animation of navBarBg element
+        function skewNavBarAnimation() {
+            let newDeg = 0;
+            let change = rad;
+
+            const skewNavBarInterval = setInterval(() => {
+                if (newDeg >= deg) {
+                    clearInterval(skewNavBarInterval);
+                } else if (navBarHasAngle === false) {
+                    navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
+                    clearInterval(skewNavBarInterval);
+                } else {
+                    change = change * 0.983;
+                    newDeg = newDeg + change;
+                    navBarBg.style.transform = "skewY(" + (-newDeg) + "deg) translateY(-90%)";
+                }
+            }, 15);
+        };
+
+        // Function which starts and stops the skew animation of footerBarBg element
+        function skewFooterBarAnimation() {
+            let newDeg = 0;
+            let change = rad;
+
+            const skewFooterBarInterval = setInterval(() => {
+                if (newDeg >= deg) {
+                    clearInterval(skewFooterBarInterval);
+                } else if (footerHasAngle === false) {
+                    footerBarBg.style.transform = "skewY(" + 0 + "deg)";
+                    clearInterval(skewFooterBarInterval);
+                } else {
+                    change = change * 0.983;
+                    newDeg = newDeg + change;
+                    footerBarBg.style.transform = "skewY(" + (-newDeg) + "deg)";
+                }
+            }, 15);
+        };
     </script>
 </html>
