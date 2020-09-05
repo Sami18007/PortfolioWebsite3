@@ -31,7 +31,27 @@
         </header>
         <section id="projectSection">
             <div id="projectTable" class="sectionContent">
-                <div class="tableItem">
+                <div id="item-1" class="tableItem">
+                    <div class="titleBar">
+                        <h1>Project 1</h1>
+                        <i class="fas fa-caret-down fa-2x" onclick="handleClick(this, 'item-1', 'itemContent-1', 0)"></i>
+                    </div>
+                    <div id="itemContent-1" class="itemContent">
+                        <div class="itemImage"></div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Excepturi voluptatibus illo odio non expedita nisi consequatur quod incidunt odit? 
+                            Tempora et cum ullam esse ut dolores consequatur eum natus velit saepe. 
+                            Possimus eum veritatis officia temporibus commodi dicta ullam facere aliquam similique quia, 
+                            dolor modi ratione blanditiis quibusdam rem eius?
+                        </p>
+                        <span class="buttons">
+                            <button>App</button>
+                            <button>Code</button>
+                        </span>
+                    </div>
+                </div>
+                <!-- <div class="tableItem">
                     <h2 class="itemTitle">Project 1</h2>
                     <img class="itemImage" src="./images/butterfly-2049567_1920.jpg"></img>
                     <p class="itemText">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
@@ -69,7 +89,7 @@
                             <button>App</button>
                             <button>Code</button>
                         </span>
-                </div>
+                </div> -->
             </div>
         </section>
         <footer id="pageFooter">
@@ -124,7 +144,7 @@
                 footerHasAngle = false;
                 footerBarBg.style.transform = "skewY(" + 0 + "deg)";
             }
-        }
+        };
 
         // Function which starts and stops the skew animation of navBarBg element
         function skewNavBarAnimation() {
@@ -143,7 +163,7 @@
                     navBarBg.style.transform = "skewY(" + (-newDeg) + "deg) translateY(-90%)";
                 }
             }, 15);
-        };
+        }
 
         // Function which starts and stops the skew animation of footerBarBg element
         function skewFooterBarAnimation() {
@@ -162,6 +182,44 @@
                     footerBarBg.style.transform = "skewY(" + (-newDeg) + "deg)";
                 }
             }, 15);
-        };
+        }
+        
+        // Get tableItems heights for later use in handleClick function
+        const tableItemsList = document.getElementsByClassName("tableItem");
+        let itemHeightsList = [];
+        for (let i = 0; i < tableItemsList.length; i++) {
+            itemHeightsList[i] = Number.parseFloat(getComputedStyle(tableItemsList[i]).height);
+            tableItemsList[i].style.height = "10vh";
+        }
+
+        // Function for showing or hiding the project content
+        function handleClick(buttonContext, itemId, itemContentId, index) {
+            const item = document.getElementById(itemId);
+            // const itemContent = document.getElementById(itemContentId);
+            // let itemHeight = 10;
+            let finalHeight = Number.parseInt((itemHeightsList[index] / innerHeight) * 100);
+            // let change = 2;
+
+            if (buttonContext.style.transform !==  "rotate(180deg)") {
+                buttonContext.style.transform = "rotate(180deg)";
+            } else {
+                buttonContext.style.transform = "";
+                // itemHeight = finalHeight;
+                finalHeight = 10;
+                // change = -change;
+            }
+
+            item.style.height = finalHeight + "vh";
+
+            // const animateItemContent = setInterval(() => {
+            //     change = change * 0.95;
+            //     itemHeight = itemHeight + change;
+            //     item.style.height = itemHeight + "vh";
+
+            //     if ((finalHeight > 10 && itemHeight >= finalHeight * 0.95) || (finalHeight === 10 && itemHeight <= finalHeight * 1.05)) {
+            //         clearInterval(animateItemContent);
+            //     }
+            // }, 15);
+        }
     </script>
 </html>
