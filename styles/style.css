@@ -98,6 +98,7 @@ body {
 #navBar a {
     color: white;
     margin: 0 0 0 1.25vw;
+    transition-duration: 0.5s;
 }
 
 #navBar a:hover {
@@ -193,6 +194,11 @@ body {
     /* color: rgba(40, 40, 40, 0.7); */
     /* width: 100%;
     text-align: center; */
+    transition-duration: 0.5s;
+}
+
+#headerArrowDown:hover {
+    color: var(--bg-color-extra-light-transparent);
 }
 
 #projectSection {
@@ -284,6 +290,11 @@ body {
     background-image: url("../images/butterfly-2049567_1920.jpg");
     background-position: center;
     background-size: cover;
+    transition-duration: 0.5s;
+}
+
+.itemImage:hover {
+    filter: brightness(125%);
 }
 
 /* .itemText {
@@ -307,6 +318,7 @@ button {
     background-color: var(--bg-color-light);
     font-size: 1.9vh;
     color: white;
+    transition-duration: 0.5s;
 }
 
 button:first-child {
@@ -342,6 +354,11 @@ button:hover {
     transform: translate(-50%, 50%);
     color: var(--text-color-dark-transparent);
     z-index: 10;
+    transition-duration: 0.5s;
+}
+
+#footerArrowUp:hover {
+    color: var(--bg-color-extra-light-transparent);
 }
 
 #footerBg {

@@ -113,8 +113,8 @@
     <script>
         const navBarBg = document.getElementById("navBarBg");
         const pageFooter = document.getElementById("pageFooter");
-        const pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.15;
         const footerBarBg = document.getElementById("footerBarBg");
+        let pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.15;
         let navBarHasAngle = false;
         let footerHasAngle = false;
         let width = innerWidth;
@@ -128,9 +128,14 @@
         navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
         navBarHasAngle = true;
         skewNavBarAnimation();
+        skewFooterBarAnimation();
 
         // Start or stop playing animations depending on what on how much the page has been scrolled
         onscroll = function() {
+            // Update pageFooterOffset for skewFooterBarAnimation function,
+            // because its offset value changes when project content is opened or closed
+            pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.15;
+
             if (document.documentElement.scrollTop <= 0 && navBarHasAngle === false) {
                 navBarHasAngle = true;
                 skewNavBarAnimation();
