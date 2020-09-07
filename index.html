@@ -114,7 +114,7 @@
         const navBarBg = document.getElementById("navBarBg");
         const pageFooter = document.getElementById("pageFooter");
         const footerBarBg = document.getElementById("footerBarBg");
-        let pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.15;
+        let pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.05;
         let navBarHasAngle = false;
         let footerHasAngle = false;
         let width = innerWidth;
@@ -127,6 +127,7 @@
         // Initialize the navBarBg
         navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
         navBarHasAngle = true;
+        footerHasAngle = true;
         skewNavBarAnimation();
         skewFooterBarAnimation();
 
@@ -134,7 +135,7 @@
         onscroll = function() {
             // Update pageFooterOffset for skewFooterBarAnimation function,
             // because its offset value changes when project content is opened or closed
-            pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.15;
+            pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.05;
 
             if (document.documentElement.scrollTop <= 0 && navBarHasAngle === false) {
                 navBarHasAngle = true;

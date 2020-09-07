@@ -250,6 +250,10 @@ body {
     transition-duration: 0.5s;
 }
 
+.titleBar i:hover {
+    color: var(--bg-color-extra-light-transparent);
+}
+
 .itemContent {
     display: block;
     width: 100%;
