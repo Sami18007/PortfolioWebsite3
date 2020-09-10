@@ -6,6 +6,8 @@
     --text-color-dark-transparent: rgba(46, 39, 53, 0.72);
     --text-color-medium: rgb(65, 57, 85);
     --text-color-light: rgb(105, 92, 117);
+    --light-grey: rgb(204, 197, 225);
+    --extra-light-grey: rgb(221, 214, 238);
 }
 
 html {
@@ -98,7 +100,7 @@ body {
 #navBar a {
     color: white;
     margin: 0 0 0 1.25vw;
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
 }
 
 #navBar a:hover {
@@ -123,12 +125,12 @@ body {
 }
 
 .bgLayer1 {
-    background: repeating-linear-gradient(to right, var(--bg-color-extra-light-transparent) 10vw, var(--bg-color) 20vw);
+    background: repeating-linear-gradient(to right, var(--bg-color-extra-light-transparent) 5vw, var(--bg-color) 10vw);
     /* position: relative; */
 }
 
 .bgLayer2 {
-    background: repeating-linear-gradient(to bottom, var(--bg-color-extra-light-transparent) 10vw, rgba(137, 43, 226, 0.4) 20vw);
+    background: repeating-linear-gradient(to bottom, var(--bg-color-extra-light-transparent) 5vw, rgba(137, 43, 226, 0.4) 10vw);
     position: absolute;
     top: 0;
     left: 0;
@@ -158,7 +160,7 @@ body {
     transform: translate(-50%, -50%);
     /* background: linear-gradient(173deg, rgba(128, 128, 128, 0.9), rgba(82, 82, 82, 0.9), rgba(172, 172, 172, 0.9)); */
     /* border-radius: 8px; */
-    color: rgb(204, 197, 225);
+    color: var(--light-grey);
     text-shadow: 1.25px 0.6vh 3px black;
     z-index: 1;
 }
@@ -194,7 +196,7 @@ body {
     /* color: rgba(40, 40, 40, 0.7); */
     /* width: 100%;
     text-align: center; */
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
 }
 
 #headerArrowDown:hover {
@@ -203,7 +205,7 @@ body {
 
 #projectSection {
     width: 100%;
-    margin: 0;
+    margin: 8vh 0;
     /* position: relative; */
     /* top: 14vh; */
     /* left: 0; */
@@ -221,14 +223,15 @@ body {
 .tableItem {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
     width: 100%;
     /* height: 10vh; */
-    margin: 0.625vw 0;
-    border-radius: 8px;
+    margin: 1.6vh 0;
+    /* border-radius: 8px; */
     box-sizing: border-box;
-    border: 0.5vh solid var(--bg-color-extra-light-transparent);
+    /* box-shadow: 1.25px 0.6vh 3px black; */
+    /* border: 0.5vh solid var(--bg-color-extra-light-transparent); */
     /* background: linear-gradient(173deg, rgba(40, 40, 40, 0.9), rgba(128, 128, 128, 0.9)); */
     /* background-color: rgba(40, 40, 40, 0.9); */
     transition-duration: 0.5s;
@@ -241,25 +244,34 @@ body {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 0 1.25vw;
+    padding: 0 20px;
     color: var(--text-color-dark-transparent);
+    background: linear-gradient(to top, var(--extra-light-grey) 5%, var(--light-grey) 100%);
+    /* box-shadow: 1.25px 0.4vh 3px black; */
     /* text-shadow: 1px 0.3vh 3px black; */
+    /* transition-duration: 0.5s; */
 }
 
-.titleBar i {
+.titleBar:hover {
+    background: linear-gradient(to bottom, var(--extra-light-grey) 90%, var(--bg-color-extra-light-transparent) 100%);
+    /* color: var(--bg-color-extra-light-transparent); */
+}
+
+/* .titleBar i {
     transition-duration: 0.5s;
-}
+} */
 
-.titleBar i:hover {
-    color: var(--bg-color-extra-light-transparent);
-}
+/* .titleBar i:hover {
+    color: white;
+} */
 
 .itemContent {
+    /* position: relative; */
     display: block;
     width: 100%;
     /* height: 40vh; */
     box-sizing: border-box;
-    padding: 0 1.25vw;
+    padding: 0 20px;
     color: var(--text-color-dark-transparent);
     /* border-radius: 7px; */
     /* border: 0.25vw solid var(--text-color-dark); */
@@ -287,27 +299,31 @@ body {
     display: block;
     width: 100%;
     height: 30vh;
-    margin: auto;
+    margin: 20px 0 20px auto;
     box-sizing: border-box;
     /* border: 0.25vw solid var(--text-color-dark-transparent); */
-    border-radius: 8px;
-    background-image: url("../images/butterfly-2049567_1920.jpg");
+    /* border-radius: 8px; */
+    /* background-image: url("../images/butterfly-2049567_1920.jpg"); */
     background-position: center;
     background-size: cover;
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
 }
 
 .itemImage:hover {
     filter: brightness(125%);
 }
 
-/* .itemText {
+.itemText {
+    /* position: absolute;
+    top: 0;
+    left: 20px;
+    width: 50%; */
     text-align: center;
-} */
+}
 
 .buttons {
     width: 100%;
-    margin: 5vh 0 5vh 0;
+    margin: 20px 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -322,7 +338,7 @@ button {
     background-color: var(--bg-color-light);
     font-size: 1.9vh;
     color: white;
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
 }
 
 button:first-child {
@@ -358,7 +374,7 @@ button:hover {
     transform: translate(-50%, 50%);
     color: var(--text-color-dark-transparent);
     z-index: 10;
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
 }
 
 #footerArrowUp:hover {
@@ -377,11 +393,11 @@ button:hover {
 }
 
 #footerBg .bgLayer1 {
-    background: repeating-linear-gradient(to left, var(--bg-color) 10vw, var(--bg-color-extra-light-transparent) 20vw);
+    background: repeating-linear-gradient(to left, var(--bg-color) 5vw, var(--bg-color-extra-light-transparent) 10vw);
 }
 
 #footerBg .bgLayer2 {
-    background: repeating-linear-gradient(to top, rgba(137, 43, 226, 0.4) 10vw, var(--bg-color-extra-light-transparent) 20vw);
+    background: repeating-linear-gradient(to top, rgba(137, 43, 226, 0.4) 5vw, var(--bg-color-extra-light-transparent) 10vw);
 }
 
 /* #footerBg .bgLayer1 {
@@ -475,7 +491,46 @@ button:hover {
     color: white;
 }
 
+#imagePanel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1000;
+    transition-duration: 0.5s;
+}
 
+#imagePanelButton {
+    width: 50px;
+    height: 50px;
+    font-size: x-large;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    transition-duration: 0.5s;
+}
+
+#imagePanelButton:hover {
+    color: var(--light-grey);
+}
+
+#imagePanelImg {
+    display: block;
+    width: 0;
+    height: auto;
+    box-sizing: border-box;
+    /* border: 5px solid var(--text-color-dark); */
+    transition-duration: 0.5s;
+}
 
 @media only screen and (min-width: 992px) {
 

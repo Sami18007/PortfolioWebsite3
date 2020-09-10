@@ -32,13 +32,37 @@
         <section id="projectSection">
             <div id="projectTable" class="sectionContent">
                 <div id="item-1" class="tableItem">
-                    <div class="titleBar">
-                        <h1>Project 1</h1>
-                        <i class="fas fa-caret-down fa-2x" onclick="handleClick(this, 'item-1', 'itemContent-1', 0)"></i>
+                    <div class="titleBar" onclick="openItem('itemOpenIcon-1', 'item-1', 'itemContent-1', 0)">
+                        <h2>Project 1</h2>
+                        <i id="itemOpenIcon-1" class="fas fa-caret-down fa-2x"></i>
                     </div>
                     <div id="itemContent-1" class="itemContent">
-                        <div class="itemImage"></div>
-                        <p>
+                        <div id="itemImage-1" class="itemImage" 
+                            style="background-image: url('./images/butterfly-2049567_1920.jpg')" 
+                            onClick="showLargeImg('itemImage-1')"></div>
+                        <p class="itemText">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Excepturi voluptatibus illo odio non expedita nisi consequatur quod incidunt odit? 
+                            Tempora et cum ullam esse ut dolores consequatur eum natus velit saepe. 
+                            Possimus eum veritatis officia temporibus commodi dicta ullam facere aliquam similique quia, 
+                            dolor modi ratione blanditiis quibusdam rem eius?
+                        </p>
+                        <span class="buttons">
+                            <button>App</button>
+                            <button>Code</button>
+                        </span>
+                    </div>
+                </div>
+                <div id="item-2" class="tableItem">
+                    <div class="titleBar" onclick="openItem('itemOpenIcon-2', 'item-2', 'itemContent-2', 0)">
+                        <h2>Project 2</h2>
+                        <i id="itemOpenIcon-2" class="fas fa-caret-down fa-2x"></i>
+                    </div>
+                    <div id="itemContent-2" class="itemContent">
+                        <div id="itemImage-2" class="itemImage" 
+                            style="background-image: url('./images/away-4059472_1920.jpg')" 
+                            onClick="showLargeImg('itemImage-2')"></div>
+                        <p class="itemText">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                             Excepturi voluptatibus illo odio non expedita nisi consequatur quod incidunt odit? 
                             Tempora et cum ullam esse ut dolores consequatur eum natus velit saepe. 
@@ -109,6 +133,10 @@
                 </div>
             </div>
         </footer>
+        <div id="imagePanel" onclick="hideLargeImg()">
+            <button id="imagePanelButton" onclick="hideLargeImg()">X</button>
+            <img id="imagePanelImg" src="" />
+        </div>
     </body>
     <script>
         const navBarBg = document.getElementById("navBarBg");
@@ -137,7 +165,7 @@
             // because its offset value changes when project content is opened or closed
             pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.05;
 
-            if (document.documentElement.scrollTop <= 0 && navBarHasAngle === false) {
+            if (document.documentElement.scrollTop <= 50 && navBarHasAngle === false) {
                 navBarHasAngle = true;
                 skewNavBarAnimation();
             } else if (document.documentElement.scrollTop > height && navBarHasAngle === true) {
@@ -199,19 +227,22 @@
         }
 
         // Function for showing or hiding the project content
-        function handleClick(buttonContext, itemId, itemContentId, index) {
+        function openItem(iconId, itemId, itemContentId, index) {
             const item = document.getElementById(itemId);
+            const icon = document.getElementById(iconId);
             // const itemContent = document.getElementById(itemContentId);
-            // let itemHeight = 10;
+            let titleBarHeight = Number.parseInt(
+                Number.parseFloat(getComputedStyle(document.getElementsByClassName("titleBar")[0]).height) / innerHeight * 100
+            );
             let finalHeight = Number.parseInt((itemHeightsList[index] / innerHeight) * 100);
             // let change = 2;
 
-            if (buttonContext.style.transform !==  "rotate(180deg)") {
-                buttonContext.style.transform = "rotate(180deg)";
+            if (icon.style.transform !==  "rotate(180deg)") {
+                icon.style.transform = "rotate(180deg)";
             } else {
-                buttonContext.style.transform = "";
+                icon.style.transform = "";
                 // itemHeight = finalHeight;
-                finalHeight = 10;
+                finalHeight = titleBarHeight;
                 // change = -change;
             }
 
@@ -226,6 +257,40 @@
             //         clearInterval(animateItemContent);
             //     }
             // }, 15);
+        }
+
+        function showLargeImg(imgId) {
+            const img = document.getElementById(imgId);
+            const imgUrlStr = getComputedStyle(img).backgroundImage;
+            const imagePanel = document.getElementById("imagePanel");
+            const imagePanelImg = document.getElementById("imagePanelImg");
+            let percentage = 0.1;
+
+            imagePanelImg.src = `${imgUrlStr.substr(13, imgUrlStr.length - 15)}`; // Remove first four ('url(') letters and last (')') letter
+            imagePanel.style.display = "flex";
+
+            const largenImg = setInterval(() => {
+                // percentage *= 2;
+                // if (percentage <= 80) {
+                //     imagePanelImg.style.width = `${percentage}%`;
+                //     imagePanel.style.backgroundColor = `rgba(46, 39, 53, ${percentage / 100})`;
+                // }
+                // else {
+                    imagePanelImg.style.width = "80%";
+                    imagePanel.style.backgroundColor = "var(--text-color-dark-transparent)";
+                    clearInterval(largenImg);
+                // }
+            }, 10);
+        }
+
+        function hideLargeImg() {
+            // document.getElementById('imagePanel').style.display = 'none'
+            const imagePanel = document.getElementById("imagePanel");
+            const imagePanelImg = document.getElementById("imagePanelImg");
+            
+            imagePanelImg.style.width = "0%";
+            imagePanel.style.backgroundColor = "transparent";
+            imagePanel.style.display = "none";
         }
     </script>
 </html>
