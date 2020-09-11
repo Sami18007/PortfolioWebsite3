@@ -34,7 +34,7 @@
                 <div id="item-1" class="tableItem">
                     <div class="titleBar" onclick="openItem('itemOpenIcon-1', 'item-1', 'itemContent-1', 0)">
                         <h2>Project 1</h2>
-                        <i id="itemOpenIcon-1" class="fas fa-caret-down fa-2x"></i>
+                        <i id="itemOpenIcon-1" class="fas fa-caret-down fa-2x itemOpenIcon"></i>
                     </div>
                     <div id="itemContent-1" class="itemContent">
                         <div id="itemImage-1" class="itemImage" 
@@ -56,7 +56,7 @@
                 <div id="item-2" class="tableItem">
                     <div class="titleBar" onclick="openItem('itemOpenIcon-2', 'item-2', 'itemContent-2', 0)">
                         <h2>Project 2</h2>
-                        <i id="itemOpenIcon-2" class="fas fa-caret-down fa-2x"></i>
+                        <i id="itemOpenIcon-2" class="fas fa-caret-down fa-2x itemOpenIcon"></i>
                     </div>
                     <div id="itemContent-2" class="itemContent">
                         <div id="itemImage-2" class="itemImage" 
@@ -142,88 +142,172 @@
         const navBarBg = document.getElementById("navBarBg");
         const pageFooter = document.getElementById("pageFooter");
         const footerBarBg = document.getElementById("footerBarBg");
-        let pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.05;
-        let navBarHasAngle = false;
-        let footerHasAngle = false;
-        let width = innerWidth;
-        let height = innerHeight;
+        const projectTable = document.getElementById("projectTable");
+        const tableItemsList = document.getElementsByClassName("tableItem");
+        const iconsList = document.getElementsByClassName("itemOpenIcon");
+        let itemHeightsList;
+        let  titleBarHeight;
+        let pageFooterOffset;
+        let navBarHasAngle;
+        let footerHasAngle;
+        let rad;
+        let deg;
 
         // Find out the right angle for the navBarBg and footerBarBg
-        let rad = (Math.atan((height * 0.78) / width));
-        let deg = rad * (180 / Math.PI);
+        // let rad = (Math.atan((innerHeight * 0.78) / innerWidth));
+        // let deg = rad * (180 / Math.PI);
 
         // Initialize the navBarBg
-        navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
-        navBarHasAngle = true;
-        footerHasAngle = true;
-        skewNavBarAnimation();
-        skewFooterBarAnimation();
+        // navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
+        // navBarHasAngle = true;
+        // footerHasAngle = true;
+        // skewNavBarAnimation();
+        // skewFooterBarAnimation();
+        // navBarBg.style.transform = "skewY(" + (-deg) + "deg) translateY(-90%)";
+        // footerBarBg.style.transform = "skewY(" + (-deg) + "deg)";
+        initializePage();
 
-        // Start or stop playing animations depending on what on how much the page has been scrolled
+        onresize = function() {
+            // initializePage();
+            location.reload();
+        };
+
+        // Start or stop playing animations depending on how much the page has been scrolled
         onscroll = function() {
             // Update pageFooterOffset for skewFooterBarAnimation function,
             // because its offset value changes when project content is opened or closed
+            skewHeaderAndFooter();
+
+            // if (document.documentElement.scrollTop >= projectTable.offsetTop - innerHeight &&
+            //     document.documentElement.scrollTop <= projectTable.offsetTop + 
+            //     Number.parseFloat(getComputedStyle(projectTable).height)) {
+            //     moveItemsToScreen(document.documentElement.scrollTop);
+            // }
+
+            moveItemsToScreen(document.documentElement.scrollTop);
+
+        };
+
+        function initializePage() {
+            // const titleBarHeight = Number.parseFloat(getComputedStyle(document.getElementsByClassName("titleBar")[0]).height);
+            const wait = setInterval(() => { // wait until the document is loaded to avoid wrong values from getComputedStyle function
+                let itemContentHeight;
+                pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.05;
+                navBarHasAngle = true;
+                footerHasAngle = true;
+                rad = (Math.atan((innerHeight * 0.78) / innerWidth));
+                deg = rad * (180 / Math.PI);
+                navBarBg.style.transform = "skewY(" + (-deg) + "deg) translateY(-90%)";
+                footerBarBg.style.transform = "skewY(" + (-deg) + "deg)";
+                // skewHeaderAndFooter();
+
+                // icon.style.transform = "rotate(180deg)";
+                // tableItemsList = document.getElementsByClassName("tableItem");
+                itemHeightsList = [];
+                titleBarHeight = Number.parseFloat(getComputedStyle(document.getElementsByClassName("titleBar")[0]).height);
+                // projectTable.style.height = (titleBarHeight * 4) + "px";
+
+                for (let i = 0; i < tableItemsList.length; i++) {
+                    // itemContentHeight = Number.parseFloat(getComputedStyle(document.getElementsByClassName("itemContent")[i]).height);
+                    // openItem(`itemOpenIcon-${i + 1}`, `item-${i + 1}`, `itemContent-${i}`, i);
+                    // tableItemsList[i].style.height = "100%";
+                    itemHeightsList[i] = Number.parseFloat(getComputedStyle(tableItemsList[i]).height);
+                    // itemHeightsList[i] = tableItemsList[i].getBoundingClientRect().height;
+                    // itemHeightsList[i] = titleBarHeight + itemContentHeight;
+                    // itemHeightsList[i] = (0.78 * innerHeight);
+                    tableItemsList[i].style.height = titleBarHeight + "px";
+                    iconsList[i].style.transform = "";
+                }
+
+                // for (let i = 0; i < tableItemsList.length; i++) {
+                //     openItem(`itemOpenIcon-${i + 1}`, `item-${i + 1}`, `itemContent-${i + 1}`, i);
+                // }
+
+                // console.log(Number.parseFloat(tableItemsList[0].style.height) + ", " + itemHeightsList[0] + ", " + titleBarHeight);
+
+                clearInterval(wait);
+            }, 250);
+        }
+
+        function skewHeaderAndFooter() {
             pageFooterOffset = pageFooter.offsetTop - innerHeight * 0.05;
 
-            if (document.documentElement.scrollTop <= 50 && navBarHasAngle === false) {
+            if (document.documentElement.scrollTop <= innerHeight / 2 && navBarHasAngle === false) {
                 navBarHasAngle = true;
-                skewNavBarAnimation();
-            } else if (document.documentElement.scrollTop > height && navBarHasAngle === true) {
+                navBarBg.style.transform = "skewY(" + (-deg) + "deg) translateY(-90%)";
+            } else if (document.documentElement.scrollTop > innerHeight && navBarHasAngle === true) {
                 navBarHasAngle = false;
                 navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
-            } else if (document.documentElement.scrollTop >= pageFooterOffset && footerHasAngle === false) {
+            } else if (document.documentElement.scrollTop >= pageFooterOffset - innerHeight / 2 && footerHasAngle === false) {
                 footerHasAngle = true;
-                skewFooterBarAnimation();
-            } else if (document.documentElement.scrollTop < pageFooterOffset - height && footerHasAngle === true) {
+                footerBarBg.style.transform = "skewY(" + (-deg) + "deg)";
+            } else if (document.documentElement.scrollTop < pageFooterOffset - innerHeight && footerHasAngle === true) {
                 footerHasAngle = false;
                 footerBarBg.style.transform = "skewY(" + 0 + "deg)";
             }
-        };
+        }
 
         // Function which starts and stops the skew animation of navBarBg element
-        function skewNavBarAnimation() {
-            let newDeg = 0;
-            let change = rad;
+        // function skewNavBarAnimation() {
+        //     let newDeg = 0;
+        //     let change = rad;
 
-            const skewNavBarInterval = setInterval(() => {
-                if (newDeg >= deg) {
-                    clearInterval(skewNavBarInterval);
-                } else if (navBarHasAngle === false) {
-                    navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
-                    clearInterval(skewNavBarInterval);
-                } else {
-                    change = change * 0.983;
-                    newDeg = newDeg + change;
-                    navBarBg.style.transform = "skewY(" + (-newDeg) + "deg) translateY(-90%)";
-                }
-            }, 15);
-        }
+        //     const skewNavBarInterval = setInterval(() => {
+        //         if (newDeg >= deg) {
+        //             clearInterval(skewNavBarInterval);
+        //         } else if (navBarHasAngle === false) {
+        //             navBarBg.style.transform = "skewY(" + 0 + "deg) translateY(-90%)";
+        //             clearInterval(skewNavBarInterval);
+        //         } else {
+        //             change = change * 0.983;
+        //             newDeg = newDeg + change;
+        //             navBarBg.style.transform = "skewY(" + (-newDeg) + "deg) translateY(-90%)";
+        //         }
+        //     }, 15);
+
+        //     navBarBg.style.transform = "skewY(" + (-deg) + "deg) translateY(-90%)";
+        // }
 
         // Function which starts and stops the skew animation of footerBarBg element
-        function skewFooterBarAnimation() {
-            let newDeg = 0;
-            let change = rad;
+        // function skewFooterBarAnimation() {
+        //     let newDeg = 0;
+        //     let change = rad;
 
-            const skewFooterBarInterval = setInterval(() => {
-                if (newDeg >= deg) {
-                    clearInterval(skewFooterBarInterval);
-                } else if (footerHasAngle === false) {
-                    footerBarBg.style.transform = "skewY(" + 0 + "deg)";
-                    clearInterval(skewFooterBarInterval);
-                } else {
-                    change = change * 0.983;
-                    newDeg = newDeg + change;
-                    footerBarBg.style.transform = "skewY(" + (-newDeg) + "deg)";
+        //     const skewFooterBarInterval = setInterval(() => {
+        //         if (newDeg >= deg) {
+        //             clearInterval(skewFooterBarInterval);
+        //         } else if (footerHasAngle === false) {
+        //             footerBarBg.style.transform = "skewY(" + 0 + "deg)";
+        //             clearInterval(skewFooterBarInterval);
+        //         } else {
+        //             change = change * 0.983;
+        //             newDeg = newDeg + change;
+        //             footerBarBg.style.transform = "skewY(" + (-newDeg) + "deg)";
+        //         }
+        //     }, 15);
+
+        //     footerBarBg.style.transform = "skewY(" + (-deg) + "deg)";
+        // }
+
+        // Function for moving a project item into the view
+        function moveItemsToScreen(scrollPos) {
+            const itemMinHeight = titleBarHeight;
+            let itemHeight;
+
+            for (let i = 0; i < tableItemsList.length; i++) {
+                itemHeight = Number.parseFloat(getComputedStyle(tableItemsList[i]).height); // Current height of the item
+
+                if (tableItemsList[i].style.left === "-100vw" && 
+                    scrollPos >= tableItemsList[i].offsetTop - innerHeight + itemHeight / 2 &&
+                    scrollPos <= tableItemsList[i].offsetTop + itemHeight / 2) {
+                    tableItemsList[i].style.left = "0";
+                } else if (Number.parseInt(itemHeight) === Number.parseInt(itemMinHeight) && 
+                    getComputedStyle(tableItemsList[i]).left === "0px" && 
+                    (scrollPos < tableItemsList[i].offsetTop - innerHeight + itemHeight / 2 ||
+                    scrollPos > tableItemsList[i].offsetTop + itemHeight / 2)) {
+                    tableItemsList[i].style.left = "-100vw";
                 }
-            }, 15);
-        }
-        
-        // Get tableItems heights for later use in handleClick function
-        const tableItemsList = document.getElementsByClassName("tableItem");
-        let itemHeightsList = [];
-        for (let i = 0; i < tableItemsList.length; i++) {
-            itemHeightsList[i] = Number.parseFloat(getComputedStyle(tableItemsList[i]).height);
-            tableItemsList[i].style.height = "10vh";
+            }
         }
 
         // Function for showing or hiding the project content
@@ -231,22 +315,30 @@
             const item = document.getElementById(itemId);
             const icon = document.getElementById(iconId);
             // const itemContent = document.getElementById(itemContentId);
-            let titleBarHeight = Number.parseInt(
-                Number.parseFloat(getComputedStyle(document.getElementsByClassName("titleBar")[0]).height) / innerHeight * 100
-            );
-            let finalHeight = Number.parseInt((itemHeightsList[index] / innerHeight) * 100);
+            // let titleBarHeight = getComputedStyle(document.getElementsByClassName("titleBar")[0]).height;
+            let finalHeight = itemHeightsList[index];
             // let change = 2;
 
             if (icon.style.transform !==  "rotate(180deg)") {
                 icon.style.transform = "rotate(180deg)";
-            } else {
+            } else { // Close item
                 icon.style.transform = "";
                 // itemHeight = finalHeight;
                 finalHeight = titleBarHeight;
                 // change = -change;
+
+                // Move all project items into the view because otherwise some items 
+                // which should be in the view after closing this item,
+                // does not move to the view without scrolling
+                for (let i = 0; i < tableItemsList.length; i++) {
+                    tableItemsList[i].style.left = "0";
+                }
+                // console.log(document.documentElement.scrollTop + ", " + (document.documentElement.scrollTop + Number.parseFloat(getComputedStyle(item).height) + Number.parseFloat(titleBarHeight)));
             }
 
-            item.style.height = finalHeight + "vh";
+            item.style.height = finalHeight + "px";
+
+            // console.log(titleBarHeight + ", " + finalHeight);
 
             // const animateItemContent = setInterval(() => {
             //     change = change * 0.95;
